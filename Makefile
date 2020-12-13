@@ -58,7 +58,8 @@ TOOLPREFIX := $(shell if riscv64-unknown-elf-objdump -i 2>&1 | grep 'elf64-big' 
 	echo "*** To turn off this error, run 'gmake TOOLPREFIX= ...'." 1>&2; \
 	echo "***" 1>&2; exit 1; fi)
 endif
-
+gdb:
+	riscv64-unknown-elf-gdb kernel/kernel
 QEMU = qemu-system-riscv64
 
 CC = $(TOOLPREFIX)gcc
@@ -149,7 +150,7 @@ UPROGS=\
 	$U/_grind\
 	$U/_wc\
 	$U/_zombie\
-        $U/_copy\
+    $U/_copy\
 	$U/_Primes\
 	$U/_find\
 
